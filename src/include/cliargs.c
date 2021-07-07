@@ -10,7 +10,6 @@ char *FILENAME;
 float vin;
 float vout;
 
-
 void cli_handler(int argc, char *argv[]){
     int option;
     while(option = getopt(argc, argv, "vVhHG") != -1){
@@ -33,21 +32,26 @@ void cli_handler(int argc, char *argv[]){
     // Handle the non option parameters
     if(argv[optind] != NULL){
         vin = strtof(argv[optind], NULL);
-        //printf("%f\n", vin);
+        printf("Vin: %.2f\n", vin);
     } else {
         // Error
+        puts("Error no first argument found.");
+        exit(EXIT_FAILURE);
     }
 
     if(argv[optind+1] != NULL){
         vout = strtof(argv[optind+1], NULL);
-        //printf("%f\n", vout);
+        printf("Vout: %.2f\n", vout);
     } else {
         // Error
+        puts("Error no second argument found.");
+        exit(EXIT_FAILURE);
     }
 
     if(argv[optind+2] != NULL){
         FILENAME = argv[optind+2];
     } else {
-        // Error
+        puts("Error no filename found");
+        exit(EXIT_FAILURE);
     }
 }

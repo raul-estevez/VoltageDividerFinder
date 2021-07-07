@@ -1,2 +1,0 @@
-            printf("%.0f\t", answer[j][i]);
-

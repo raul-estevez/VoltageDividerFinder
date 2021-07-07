@@ -1,12 +1,12 @@
-
 // TODO:
-// Mostrar el error en porcentaje
-// Implemetar la introducion de parametros desde la terminal
-// Error hadling
+// Error handling
 // Verbose
 // Makefile
 // README
 // Licencia
+
+// v2.0
+// Un cli argument con el que puedas elegir la cantidad de respuestas que imprime el programa
 
 #include <stdio.h>
 #include <unistd.h>
