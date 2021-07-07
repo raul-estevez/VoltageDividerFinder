@@ -9,6 +9,7 @@
 // Un cli argument con el que puedas elegir la cantidad de respuestas que imprime el programa
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "./include/algorithm.h"
@@ -21,7 +22,10 @@ int main(int argc, char *argv[]){
     cli_handler(argc, argv);
 
     FILE *file;
-    file = fopen(FILENAME, "r");
+    if((file = fopen(FILENAME, "r")) == NULL){
+        puts("Error could not open the file.");
+        exit(EXIT_FAILURE);
+    }
     read_file(file);
 
     /*
@@ -32,5 +36,5 @@ int main(int argc, char *argv[]){
     algorithm();
     print_answer();
 
-    return 0;
+    return EXIT_SUCCESS;
 }
