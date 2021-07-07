@@ -15,7 +15,7 @@ void algorithm(void){
         for(unsigned int j = i; j < resistors_size; j++){
             // Iterate for all R2's
             float vout_parcial = vout_function(vin, resistors[i], resistors[j]);
-            float current_error = fabs(vout-vout_parcial);
+            float current_error = (fabs(vout-vout_parcial)/vout) * 100;
             // VERBOSE
             //printf("%f\n", current_error);
 
@@ -77,9 +77,8 @@ float vout_function(float vin, float R1, float R2){
 
 void print_answer(void){
     for(unsigned short i = 0; i < 5; i++){
-        for(unsigned short j = 0; j < 2; j++){
-            printf("%.0f\t", answer[j][i]);
-        }
-        printf("%.4f\n", answer[2][i]);
+        printf("R1: %.0f\t", answer[0][i]);
+        printf("R2: %.0f\t", answer[1][i]);
+        printf("Error: %.4f%\n", answer[2][i]);
     }
 }
