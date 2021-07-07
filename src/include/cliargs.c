@@ -33,14 +33,14 @@ void cli_handler(int argc, char *argv[]){
     // Handle the non option parameters
     if(argv[optind] != NULL){
         vin = strtof(argv[optind], NULL);
-        printf("%f\n", vin);
+        //printf("%f\n", vin);
     } else {
         // Error
     }
 
     if(argv[optind+1] != NULL){
         vout = strtof(argv[optind+1], NULL);
-        printf("%f\n\n\n\n\n\n", vout);
+        //printf("%f\n", vout);
     } else {
         // Error
     }

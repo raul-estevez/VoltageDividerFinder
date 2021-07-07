@@ -3,16 +3,13 @@
 
 #include "algorithm.h"
 #include "cliargs.h"
-
-
-unsigned int resistors[] = {1000,2000,2200,3300,4700,5100,6800,10000};
-unsigned short resistors_size = sizeof(resistors) / sizeof(resistors[0]);
+#include "read_file.h"
 
 float answer[3][5];
 unsigned short answer_pos = 0;
 
-
 void algorithm(void){
+    unsigned short resistors_size = sizeof(resistors);
     for(unsigned int i = 0; i < resistors_size; i++){
         // Fix a R1
         for(unsigned int j = i; j < resistors_size; j++){
@@ -20,7 +17,7 @@ void algorithm(void){
             float vout_parcial = vout_function(vin, resistors[i], resistors[j]);
             float current_error = fabs(vout-vout_parcial);
             // VERBOSE
-            printf("%f\n", current_error);
+            //printf("%f\n", current_error);
 
             // In the first iteration we always introduce the value in the array
             if(i == 0 && j == 0){
@@ -34,7 +31,7 @@ void algorithm(void){
                 // While the current error is less than the error in the las position
                 while(current_error <= answer[2][answer_pos]){
                     // We look if we are in the las position
-                    if(answer_pos < 3){
+                    if(answer_pos < 4){
                         // The last element gets shifted one position
                         answer[0][answer_pos+1] = answer[0][answer_pos];
                         answer[1][answer_pos+1] = answer[1][answer_pos];
@@ -49,7 +46,7 @@ void algorithm(void){
                         if(answer_max == answer_pos){
                             answer_max++; 
                         }
-                        // If we are not in the first element in the array we need to keep looking 
+                    // If we are not in the first element in the array we need to keep looking 
                         // if the new error is less than the rest
                         if(answer_pos != 0){
                             answer_pos--;
@@ -79,7 +76,7 @@ float vout_function(float vin, float R1, float R2){
 }
 
 void print_answer(void){
-    for(unsigned short i = 0; i < 4; i++){
+    for(unsigned short i = 0; i < 5; i++){
         for(unsigned short j = 0; j < 2; j++){
             printf("%.0f\t", answer[j][i]);
         }
