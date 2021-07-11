@@ -22,6 +22,7 @@
 */
 
 extern unsigned int *resistors;
+extern unsigned int resistors_count;
 
 long read_resistance(FILE*);
 void write_to_resistors(long number);

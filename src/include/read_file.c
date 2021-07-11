@@ -30,24 +30,24 @@
 unsigned char EOF_flag = 0;
 
 unsigned int *resistors = NULL;
-unsigned static short resistors_sz = 0;
-unsigned static short resistors_count = 0;
+unsigned static int resistors_sz = 0;
+unsigned int resistors_count = 0;
 
 long read_resistance(FILE *fp){
 
     char *number = NULL;
     unsigned char number_sz = 0;
-    unsigned char numberount = 0;
+    unsigned char numbercount = 0;
 
     char c;
     while(((c = fgetc(fp)) != ',') && (c != EOF)){
-        if(numberount >= number_sz){
+        if(numbercount >= number_sz){
             // More space
             number_sz += 4;
             number = realloc(number, sizeof(char) * number_sz);
         }
-        number[numberount] = c;
-        numberount++;
+        number[numbercount] = c;
+        numbercount++;
     }
     // At this point we have a full number in character form 
     // so we need to convert from string to char

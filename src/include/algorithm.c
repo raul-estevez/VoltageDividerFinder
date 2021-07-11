@@ -33,10 +33,9 @@ float answer[3][5];
 unsigned short answer_pos = 0;
 
 void algorithm(void){
-    unsigned short resistors_size = sizeof(resistors);
-    for(unsigned int i = 0; i < resistors_size; i++){
+    for(unsigned int i = 0; i < resistors_count; i++){
         // Fix a R1
-        for(unsigned int j = i; j < resistors_size; j++){
+        for(unsigned int j = i; j < resistors_count; j++){
             // Iterate for all R2's
             float vout_parcial = vout_function(vin, resistors[i], resistors[j]);
             float current_error = (fabs(vout-vout_parcial)/vout) * 100;
@@ -104,8 +103,8 @@ float vout_function(float vin, float R1, float R2){
 
 void print_answer(void){
     for(unsigned short i = 0; i < 5; i++){
-        printf("R1: %.0f\t", answer[0][i]);
-        printf("R2: %.0f\t", answer[1][i]);
+        printf("R1: %.0f  \t", answer[0][i]);
+        printf("R2: %.0f  \t", answer[1][i]);
         printf("Error: %.4f%\n", answer[2][i]);
     }
 }
