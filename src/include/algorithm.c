@@ -35,7 +35,8 @@ unsigned short answer_pos = 0;
 void algorithm(void){
     for(unsigned int i = 0; i < resistors_count; i++){
         // Fix a R1
-        for(unsigned int j = i; j < resistors_count; j++){
+        //for(unsigned int j = i; j < resistors_count; j++){
+        for(unsigned int j = 0; j < resistors_count; j++){
             // Iterate for all R2's
             float vout_parcial = vout_function(vin, resistors[i], resistors[j]);
             float current_error = (fabs(vout-vout_parcial)/vout) * 100;
