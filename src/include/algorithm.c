@@ -16,8 +16,11 @@ void algorithm(void){
             // Iterate for all R2's
             float vout_parcial = vout_function(vin, resistors[i], resistors[j]);
             float current_error = (fabs(vout-vout_parcial)/vout) * 100;
-            // VERBOSE
-            //printf("%f\n", current_error);
+            
+            if(verbose_flag){
+                printf("R1: %d\tR2: %d\tVout: %.6fV    \tError:%0.6f%\n", resistors[i],
+                        resistors[j], vout_parcial, current_error);
+            }
 
             // In the first iteration we always introduce the value in the array
             if(i == 0 && j == 0){

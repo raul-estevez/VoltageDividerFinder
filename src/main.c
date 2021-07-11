@@ -1,5 +1,4 @@
 // TODO:
-// Error handling
 // Verbose
 // Makefile
 // README

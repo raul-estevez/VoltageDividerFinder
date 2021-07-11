@@ -10,21 +10,37 @@ char *FILENAME;
 float vin;
 float vout;
 
+int verbose_flag = 0;
+int help_flag = 0;
+int version_flag = 0;
+
+static struct option long_options[] = {
+    {"verbose", no_argument, &verbose_flag, 1},
+    {"help", no_argument, &help_flag, 1},
+    {"version", no_argument, &version_flag, 1},
+    {"v", no_argument, 0, 'v'},
+    {0,0,0,0}
+};
+
+
+
 void cli_handler(int argc, char *argv[]){
+    opterr = 0;
+    int option_index = 0;
     int option;
-    while(option = getopt(argc, argv, "vVhHG") != -1){
+    while((option = getopt_long(argc, argv, "vh", long_options, &option_index)) != -1){
         switch(option){
             case 'v':
-            case 'V':
                 // Verbose
+                puts("VERBOSE");
+                // verbose_flag = 1;
                 break;
             case 'h':
-            case 'H':
                 // Help page
+                puts("HELP");
                 break;
-            case 'G':
-                // version 
-                // Implement long argument
+            case '?':
+                printf("%c\n Unknow option\n", optopt);
                 break;
         }
     }
@@ -53,5 +69,14 @@ void cli_handler(int argc, char *argv[]){
     } else {
         puts("Error no filename found");
         exit(EXIT_FAILURE);
+    }
+
+
+    if(help_flag){
+        puts("LONG HELP");
+    }
+
+    if(version_flag){
+        puts("LONG VERSION");
     }
 }
