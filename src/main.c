@@ -1,5 +1,5 @@
 // TODO:
-// Verbose
+// Comentar mas el codigo
 // Makefile
 // README
 // Licencia
@@ -18,21 +18,21 @@
 
 int main(int argc, char *argv[]){
 
+    // Handle the terminal arguments
     cli_handler(argc, argv);
 
+    // Open the file 
     FILE *file;
     if((file = fopen(FILENAME, "r")) == NULL){
         puts("Error could not open the file.");
         exit(EXIT_FAILURE);
     }
-    read_file(file);
 
-    /*
-    for(unsigned int i = 0; i < 8; i++){
-        printf("%.0f\n", (float)resistors[i]);
-    }
-    */
+    // First we need to read the file to get all the input resistors in an array
+    read_file(file);
+    // Then we pass the array by the algorithm
     algorithm();
+    // And print the answer to the user
     print_answer();
 
     return EXIT_SUCCESS;

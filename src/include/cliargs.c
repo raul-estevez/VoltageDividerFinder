@@ -6,6 +6,8 @@
 #include "cliargs.h"
 #include "algorithm.h"
 
+#define VERSION "1.0"
+
 char *FILENAME;
 float vin;
 float vout;
@@ -18,11 +20,8 @@ static struct option long_options[] = {
     {"verbose", no_argument, &verbose_flag, 1},
     {"help", no_argument, &help_flag, 1},
     {"version", no_argument, &version_flag, 1},
-    {"v", no_argument, 0, 'v'},
     {0,0,0,0}
 };
-
-
 
 void cli_handler(int argc, char *argv[]){
     opterr = 0;
@@ -32,17 +31,24 @@ void cli_handler(int argc, char *argv[]){
         switch(option){
             case 'v':
                 // Verbose
-                puts("VERBOSE");
-                // verbose_flag = 1;
+                verbose_flag = 1;
                 break;
             case 'h':
                 // Help page
-                puts("HELP");
+                help_handler();
                 break;
             case '?':
-                printf("%c\n Unknow option\n", optopt);
+                printf("Unknow option -%c\n", optopt);
                 break;
         }
+    }
+
+    if(help_flag){
+        help_handler();
+    }
+
+    if(version_flag){
+        version_handler();
     }
 
     // Handle the non option parameters
@@ -70,13 +76,47 @@ void cli_handler(int argc, char *argv[]){
         puts("Error no filename found");
         exit(EXIT_FAILURE);
     }
+}
 
+void help_handler(void){
+    // Circuit diagram of the program
+    // cli arguments
+    printf("VoltageDividerFinder\t%s\n\n", VERSION);
+    puts("USAGE\n\tvdf Vin Vout file [options]");
+    puts("-----------------------------------------------------");
+    puts("DESCRIPTION");
+    puts("\tA handy tool for creating voltage dividers with the resistors you have in hand.");
+    puts("-----------------------------------------------------");
+    puts("CIRCUIT DIAGRAM;");
+    puts("\t ^ Vin");
+    puts("\t ⊥");
+    puts("\t| |");
+    puts("\t| | R1");
+    puts("\t ⊤");
+    puts("\t |———— Vout");
+    puts("\t ⊥");
+    puts("\t| |");
+    puts("\t| | R2");
+    puts("\t ⊤");
+    puts("\t |");
+    puts("\t ¯");
+    puts("-----------------------------------------------------");
+    puts("OPTIONS");
+    puts("\t--verbose\t-v\tPrints verbose info.");
+    puts("\t--help\t\t-h\tDisplays this help page.");
+    puts("\t--version\t  \tDisplays the version message.");
+    puts("-----------------------------------------------------");
+    puts("EXAMPLE");
+    puts("\tLets say you have Vin = 12v and you want Vout = 8v, you resistors are in my_resistors.txt");
+    puts("\t\t$ vdf 12 8 my_resistors.txt");
+    puts("\tAnd the program prints the best 5 combinations of resistors with less error.");
+    puts("-----------------------------------------------------");
+    puts("Created by: Raúl Estévez Gómez    <estevezgomezraul@gmail.com>\n");
+    puts("If you encounter any bug, please refer to https://github.com/SarKing/VoltageDividerFinder");
 
-    if(help_flag){
-        puts("LONG HELP");
-    }
+    exit(EXIT_SUCCESS);
+}
 
-    if(version_flag){
-        puts("LONG VERSION");
-    }
+void version_handler(void){
+
 }
