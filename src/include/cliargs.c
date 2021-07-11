@@ -79,9 +79,7 @@ void cli_handler(int argc, char *argv[]){
 }
 
 void help_handler(void){
-    // Circuit diagram of the program
-    // cli arguments
-    printf("VoltageDividerFinder\t%s\n\n", VERSION);
+    printf("VoltageDividerFinder %s\n\n", VERSION);
     puts("USAGE\n\tvdf Vin Vout file [options]");
     puts("-----------------------------------------------------");
     puts("DESCRIPTION");
@@ -118,5 +116,10 @@ void help_handler(void){
 }
 
 void version_handler(void){
+    printf("VoltageDividerFinder %s\n", VERSION);
+    puts("Copyright (C) 2021 Raúl Estévez Gómez");
+    puts("This is free software: you are free to change and redistribute it.");
+    puts("There is NO WARRANTY, to the extent permitted by law.");
 
+    exit(EXIT_SUCCESS);
 }

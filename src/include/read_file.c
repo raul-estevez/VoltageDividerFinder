@@ -34,6 +34,7 @@ long read_resistance(FILE *fp){
 }
 
 void write_to_resistors(long number){
+    // Write the fetched resistors to the array
     if(resistors_count >= resistors_sz){
         resistors_sz += 4;
         resistors = realloc(resistors, sizeof(unsigned int) * resistors_sz);

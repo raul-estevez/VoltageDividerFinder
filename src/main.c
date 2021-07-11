@@ -1,5 +1,4 @@
 // TODO:
-// Comentar mas el codigo
 // Makefile
 // README
 // Licencia
