@@ -29,7 +29,7 @@
 #include "cliargs.h"
 #include "read_file.h"
 
-float answer[3][5];
+float answer[4][5];
 unsigned short answer_pos = 0;
 
 void algorithm(void){
@@ -51,6 +51,7 @@ void algorithm(void){
                 answer[0][0] = (float)resistors[i];
                 answer[1][0] = (float)resistors[j];
                 answer[2][0] = current_error;
+                answer[3][0] = vout_parcial;
             } else {
                 // Save how full the array is
                 unsigned int answer_max = answer_pos;
@@ -63,11 +64,13 @@ void algorithm(void){
                         answer[0][answer_pos+1] = answer[0][answer_pos];
                         answer[1][answer_pos+1] = answer[1][answer_pos];
                         answer[2][answer_pos+1] = answer[2][answer_pos];
+                        answer[3][answer_pos+1] = answer[3][answer_pos];
 
                         // The new element gets introduced in the array
                         answer[0][answer_pos] = (float)resistors[i];
                         answer[1][answer_pos] = (float)resistors[j];
                         answer[2][answer_pos] = current_error;
+                        answer[3][answer_pos] = vout_parcial;
 
                         // If we added a new element in the array
                         if(answer_max == answer_pos){
@@ -87,6 +90,7 @@ void algorithm(void){
                         answer[0][answer_pos] = (float)resistors[i];
                         answer[1][answer_pos] = (float)resistors[j];
                         answer[2][answer_pos] = current_error;
+                        answer[3][answer_pos] = vout_parcial;
                        
                         answer_pos--;
                     }
@@ -106,6 +110,7 @@ void print_answer(void){
     for(unsigned short i = 0; i < 5; i++){
         printf("R1: %.0f  \t", answer[0][i]);
         printf("R2: %.0f  \t", answer[1][i]);
-        printf("Error: %.4f%\n", answer[2][i]);
+        printf("Error: %.4f%  \t", answer[2][i]);
+        printf("VOut: %.2fV\n", answer[3][i]);
     }
 }

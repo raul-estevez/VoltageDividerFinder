@@ -22,7 +22,7 @@
 */
 
 
-extern float answer[3][5];
+extern float answer[4][5];
 
 void algorithm(void);
 float vout_function(float, float, float);
